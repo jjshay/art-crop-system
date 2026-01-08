@@ -1,0 +1,19 @@
+# Art Crop System - Requirements
+
+# Core - Required
+Pillow>=10.0.0             # Image processing
+numpy>=1.24.0              # Image math
+opencv-python>=4.8.0       # Edge detection, CV operations
+
+# Background Removal
+rembg>=2.0.0               # AI background removal
+
+# Optional - For multi-AI analysis
+requests>=2.31.0           # API calls
+python-dotenv>=1.0.0       # Environment variables
+rawpy>=0.18.0              # RAW image support
+tqdm>=4.65.0               # Progress bars
+
+# Optional - Google Drive integration
+google-auth>=2.22.0
+google-api-python-client>=2.95.0

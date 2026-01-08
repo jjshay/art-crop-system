@@ -1,0 +1,29 @@
+# Environment
+.env
+*.key
+*credentials*.json
+
+# Output
+output*/
+demo_output/
+quarantine/
+processed/
+
+# Python
+__pycache__/
+*.py[cod]
+venv/
+
+# Images (don't commit large files)
+*.psd
+*.raw
+*.cr2
+*.nef
+
+# OS
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/
