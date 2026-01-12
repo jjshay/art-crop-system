@@ -11,7 +11,7 @@
 
 **AI-powered artwork detection and cropping - automatically extract art from photos with perfect borders.**
 
-![Demo](demo.gif)
+![Demo Screenshot](assets/demo.png)
 
 ---
 
