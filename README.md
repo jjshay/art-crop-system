@@ -11,7 +11,9 @@
 
 **AI-powered artwork detection and cropping - automatically extract art from photos with perfect borders.**
 
-[![Demo](https://asciinema.org/a/ia8Cfoma9r3jzEnk.svg)](https://asciinema.org/a/ia8Cfoma9r3jzEnk)
+[![Demo](https://asciinema.org/a/Z0Qp6keIpvrnztvS.svg)](https://asciinema.org/a/Z0Qp6keIpvrnztvS)
+
+[![Watch Demo](https://img.shields.io/badge/▶%20Watch%20Demo-Click%20to%20Play-red?style=for-the-badge&logo=asciinema)](https://asciinema.org/a/Z0Qp6keIpvrnztvS)
 
 ---
 
