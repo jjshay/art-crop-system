@@ -1,11 +1,14 @@
 # Art Crop System
 
+![CI](https://github.com/jjshay/art-crop-system/workflows/CI/badge.svg)
 ![Python](https://img.shields.io/badge/python-3.9+-blue.svg)
 ![License](https://img.shields.io/badge/license-MIT-green.svg)
 ![AI Models](https://img.shields.io/badge/AI%20Models-4-purple.svg)
 ![rembg](https://img.shields.io/badge/rembg-enabled-brightgreen.svg)
 
 **AI-powered artwork detection and cropping - automatically extract art from photos with perfect borders.**
+
+![Demo](demo.gif)
 
 ---
 
