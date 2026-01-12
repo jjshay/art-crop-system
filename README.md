@@ -54,6 +54,47 @@ python ai_art_crop_system.py examples/wall_photo.jpg --output output/
 
 ---
 
+## Architecture
+
+```mermaid
+flowchart TB
+    subgraph Input
+        A[Wall Photo] --> B[Image Loader]
+    end
+
+    subgraph Tier1["Tier 1: Fast Processing"]
+        B --> C[rembg Background Removal]
+        C --> D{Clean Result?}
+    end
+
+    subgraph Tier2["Tier 2: Multi-AI Analysis"]
+        D -->|No| E1[GPT-4 Vision]
+        D -->|No| E2[Claude Vision]
+        D -->|No| E3[Gemini Vision]
+        D -->|No| E4[Grok Vision]
+        E1 & E2 & E3 & E4 --> F[Boundary Consensus]
+    end
+
+    subgraph Tier3["Tier 3: CV Fallback"]
+        F --> G{Consensus?}
+        G -->|No| H[OpenCV Edge Detection]
+    end
+
+    subgraph Output
+        D -->|Yes| I[Crop Engine]
+        G -->|Yes| I
+        H --> I
+        I --> J[Detail Shot Generator]
+        J --> K[Quality Validator]
+        K --> L[Final Outputs]
+    end
+
+    style A fill:#e1f5fe
+    style L fill:#c8e6c9
+    style C fill:#fff9c4
+    style F fill:#f3e5f5
+```
+
 ## How It Works
 
 ```
