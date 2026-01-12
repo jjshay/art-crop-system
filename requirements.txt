@@ -17,3 +17,4 @@ tqdm>=4.65.0               # Progress bars
 # Optional - Google Drive integration
 google-auth>=2.22.0
 google-api-python-client>=2.95.0
+rich>=13.0.0
