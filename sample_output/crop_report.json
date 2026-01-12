@@ -1,0 +1,53 @@
+{
+  "input": {
+    "filename": "artwork_photo_001.jpg",
+    "dimensions": [4032, 3024],
+    "file_size_mb": 4.2
+  },
+  "detection": {
+    "tier_1_rembg": {
+      "foreground_detected": true,
+      "initial_bounds": [412, 156, 3620, 2868],
+      "confidence": 0.87
+    },
+    "tier_2_ai_consensus": {
+      "models": {
+        "gpt4v": {"bounds": [415, 158, 3618, 2865], "confidence": 0.94},
+        "claude": {"bounds": [414, 160, 3616, 2862], "confidence": 0.92},
+        "gemini": {"bounds": [418, 157, 3614, 2867], "confidence": 0.91},
+        "grok": {"bounds": [416, 159, 3617, 2864], "confidence": 0.89}
+      },
+      "consensus_bounds": [415, 158, 3616, 2864],
+      "average_confidence": 0.915,
+      "signature_detected": true,
+      "signature_location": "bottom-right"
+    },
+    "tier_3_cv_fallback": {
+      "executed": false,
+      "reason": "AI consensus confidence > 90%"
+    },
+    "tier_4_quality": {
+      "blur_score": 0.94,
+      "lighting": "even",
+      "angle_deviation_degrees": 1.2,
+      "color_balance": "correct",
+      "resolution_adequate": true,
+      "all_checks_passed": true
+    }
+  },
+  "outputs": [
+    {"name": "full_artwork.jpg", "dimensions": [3200, 2700], "type": "main"},
+    {"name": "detail_top_left.jpg", "dimensions": [1600, 1350], "type": "detail"},
+    {"name": "detail_top_right.jpg", "dimensions": [1600, 1350], "type": "detail"},
+    {"name": "detail_bottom_left.jpg", "dimensions": [1600, 1350], "type": "detail"},
+    {"name": "detail_bottom_right.jpg", "dimensions": [1600, 1350], "type": "detail"},
+    {"name": "detail_center.jpg", "dimensions": [1600, 1350], "type": "detail"},
+    {"name": "detail_signature.jpg", "dimensions": [800, 400], "type": "signature"},
+    {"name": "detail_texture.jpg", "dimensions": [1200, 900], "type": "texture"}
+  ],
+  "metadata": {
+    "processing_time_seconds": 4.2,
+    "ai_api_cost_usd": 0.06,
+    "timestamp": "2025-01-10T15:32:18Z"
+  }
+}
