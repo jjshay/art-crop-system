@@ -1,6 +1,9 @@
 # Art Crop System
 
 ![CI](https://github.com/jjshay/art-crop-system/workflows/CI/badge.svg)
+![CodeQL](https://github.com/jjshay/art-crop-system/workflows/CodeQL/badge.svg)
+[![codecov](https://codecov.io/gh/jjshay/art-crop-system/branch/main/graph/badge.svg)](https://codecov.io/gh/jjshay/art-crop-system)
+![Release](https://img.shields.io/github/v/release/jjshay/art-crop-system)
 ![Python](https://img.shields.io/badge/python-3.9+-blue.svg)
 ![License](https://img.shields.io/badge/license-MIT-green.svg)
 ![AI Models](https://img.shields.io/badge/AI%20Models-4-purple.svg)
