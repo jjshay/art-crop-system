@@ -2,7 +2,6 @@
 Tests for Art Crop System
 """
 import pytest
-import os
 import json
 from pathlib import Path
 
@@ -20,7 +19,7 @@ class TestCropConfig:
         config_path = Path(__file__).parent.parent / "examples" / "crop_config.json"
         with open(config_path) as f:
             config = json.load(f)
-        assert "ai_models" in config, "Config should have ai_models section"
+        assert "detection_settings" in config, "Config should have detection_settings section"
         assert "output_settings" in config, "Config should have output_settings section"
 
     def test_config_has_required_fields(self):
@@ -29,9 +28,21 @@ class TestCropConfig:
         with open(config_path) as f:
             config = json.load(f)
 
-        required_fields = ["ai_models", "output_settings", "detail_shots"]
+        required_fields = ["input", "detection_settings", "output_settings"]
         for field in required_fields:
             assert field in config, f"Config missing required field: {field}"
+
+    def test_detection_tiers_defined(self):
+        """Verify all 4 detection tiers are configured"""
+        config_path = Path(__file__).parent.parent / "examples" / "crop_config.json"
+        with open(config_path) as f:
+            config = json.load(f)
+
+        detection = config["detection_settings"]
+        assert "tier_1_rembg" in detection, "Should have tier_1_rembg"
+        assert "tier_2_ai_consensus" in detection, "Should have tier_2_ai_consensus"
+        assert "tier_3_cv_fallback" in detection, "Should have tier_3_cv_fallback"
+        assert "tier_4_quality" in detection, "Should have tier_4_quality"
 
 
 class TestSampleData:
@@ -45,7 +56,6 @@ class TestSampleData:
     def test_wall_photo_is_image(self):
         """Verify wall photo is a valid image"""
         photo_path = Path(__file__).parent.parent / "examples" / "wall_photo.jpg"
-        # Check file has content and starts with JPEG magic bytes
         with open(photo_path, 'rb') as f:
             header = f.read(3)
         assert header[:2] == b'\xff\xd8', "File should be a valid JPEG"
@@ -65,22 +75,46 @@ class TestOutputFormat:
         with open(report_path) as f:
             report = json.load(f)
 
-        assert "input_image" in report, "Report should have input_image"
-        assert "detected_artwork" in report, "Report should have detected_artwork"
-        assert "crops_generated" in report, "Report should have crops_generated"
+        assert "input" in report, "Report should have input section"
+        assert "detection" in report, "Report should have detection section"
+        assert "outputs" in report, "Report should have outputs section"
+
+    def test_report_has_all_tiers(self):
+        """Verify report contains all detection tier results"""
+        report_path = Path(__file__).parent.parent / "sample_output" / "crop_report.json"
+        with open(report_path) as f:
+            report = json.load(f)
+
+        detection = report["detection"]
+        assert "tier_1_rembg" in detection
+        assert "tier_2_ai_consensus" in detection
+        assert "tier_3_cv_fallback" in detection
+        assert "tier_4_quality" in detection
 
 
 class TestDetailShots:
     """Test detail shot generation specs"""
 
-    def test_detail_shot_types(self):
-        """Verify all detail shot types are defined"""
+    def test_output_crops_defined(self):
+        """Verify output crops are defined in config"""
         config_path = Path(__file__).parent.parent / "examples" / "crop_config.json"
         with open(config_path) as f:
             config = json.load(f)
 
-        expected_shots = ["full", "top_left", "top_right", "bottom_left",
-                         "bottom_right", "center", "signature", "edition"]
+        crops = config["output_settings"]["generate_crops"]
+        crop_names = [c["name"] for c in crops]
 
-        for shot in expected_shots:
-            assert shot in config["detail_shots"], f"Missing detail shot type: {shot}"
+        expected = ["full", "top_left", "top_right", "bottom_left",
+                   "bottom_right", "center", "signature"]
+
+        for shot in expected:
+            assert shot in crop_names, f"Missing crop type: {shot}"
+
+    def test_report_outputs_generated(self):
+        """Verify report shows generated outputs"""
+        report_path = Path(__file__).parent.parent / "sample_output" / "crop_report.json"
+        with open(report_path) as f:
+            report = json.load(f)
+
+        outputs = report["outputs"]
+        assert len(outputs) >= 7, "Should generate at least 7 output crops"
