@@ -1,0 +1,49 @@
+{
+  "input": {
+    "image_file": "examples/wall_photo.jpg",
+    "source": "gallery_photography"
+  },
+  "detection_settings": {
+    "tier_1_rembg": {
+      "enabled": true,
+      "model": "u2net"
+    },
+    "tier_2_ai_consensus": {
+      "enabled": true,
+      "models": ["gpt4v", "claude", "gemini", "grok"],
+      "min_consensus": 3,
+      "confidence_threshold": 0.85
+    },
+    "tier_3_cv_fallback": {
+      "enabled": true,
+      "method": "canny_edge",
+      "use_if_ai_confidence_below": 0.80
+    },
+    "tier_4_quality": {
+      "check_blur": true,
+      "check_lighting": true,
+      "check_angle": true,
+      "max_angle_deviation": 5.0
+    }
+  },
+  "output_settings": {
+    "generate_crops": [
+      {"name": "full", "type": "main"},
+      {"name": "top_left", "type": "quadrant"},
+      {"name": "top_right", "type": "quadrant"},
+      {"name": "bottom_left", "type": "quadrant"},
+      {"name": "bottom_right", "type": "quadrant"},
+      {"name": "center", "type": "detail"},
+      {"name": "signature", "type": "signature"},
+      {"name": "texture", "type": "texture"}
+    ],
+    "format": "jpg",
+    "quality": 95,
+    "output_directory": "output/"
+  },
+  "signature_detection": {
+    "enabled": true,
+    "expected_location": "bottom-right",
+    "extract_separately": true
+  }
+}
