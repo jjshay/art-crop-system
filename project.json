@@ -1,0 +1,36 @@
+{
+  "schema_version": 1,
+  "name": "art-crop-system",
+  "title": "Art Crop System",
+  "category": "Creative tooling",
+  "summary": "Artwork photography needs consistent full-frame and detail crops for listing presentation.",
+  "status": "Source available; runtime not revalidated in this documentation review",
+  "visibility": "public",
+  "reviewed_on": "2026-09-11",
+  "reviewed_commit": "a09ebf27dbb8b7f8a2b782bc94742c40e2d9305c",
+  "architecture": "Image input \u2192 artwork detection \u2192 crop construction \u2192 quality validation \u2192 output images.",
+  "evidence": [
+    {
+      "path": "ai_art_crop_system.py",
+      "role": "Implementation component supporting the data flow described above."
+    },
+    {
+      "path": "crop_quality_validator.py",
+      "role": "Implementation component supporting the data flow described above."
+    },
+    {
+      "path": "tests/test_crop_system.py",
+      "role": "Behavioral test source; inspect fixtures and assertions before interpreting coverage."
+    }
+  ],
+  "validation": "Repository tree and referenced source reviewed. Existing application tests, hosted deployments, paid providers, and external mutations were not re-run in this documentation review.",
+  "limitations": "Vision-assisted detection expands coverage but difficult frames and backgrounds need a quality gate.",
+  "next_improvement": "Benchmark boundary accuracy on varied frames and backgrounds and preserve rejected examples for review.",
+  "related_repositories": [
+    "ArtPrint",
+    "airdrop-processor",
+    "art-video-project",
+    "handwriting-analysis",
+    "mockup-generator"
+  ]
+}
